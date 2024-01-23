@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="crud_linqModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="cargo">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="cargoEmpleado" Relationship="Self.FK__cargoEmpl__idCar__3F466844" FromRole="cargo" ToRole="cargoEmpleado" />
+  </EntityType>
+  <EntityType Name="cargoEmpleado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idEmpleado" Type="Int32" Nullable="false" />
+    <Property Name="idCargo" Type="Int32" Nullable="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="cargo" Relationship="Self.FK__cargoEmpl__idCar__3F466844" FromRole="cargoEmpleado" ToRole="cargo" />
+    <NavigationProperty Name="empleado" Relationship="Self.fk_idEmpleado" FromRole="cargoEmpleado" ToRole="empleado" />
+  </EntityType>
+  <EntityType Name="empleado">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="idEmpresa" Type="Int32" Nullable="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="cargoEmpleado" Relationship="Self.fk_idEmpleado" FromRole="empleado" ToRole="cargoEmpleado" />
+    <NavigationProperty Name="empresa" Relationship="Self.fk_idEmpresa" FromRole="empleado" ToRole="empresa" />
+  </EntityType>
+  <EntityType Name="empresa">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="activo" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="empleado" Relationship="Self.fk_idEmpresa" FromRole="empresa" ToRole="empleado" />
+  </EntityType>
+  <Association Name="FK__cargoEmpl__idCar__3F466844">
+    <End Role="cargo" Type="Self.cargo" Multiplicity="1" />
+    <End Role="cargoEmpleado" Type="Self.cargoEmpleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cargo">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargoEmpleado">
+        <PropertyRef Name="idCargo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idEmpleado">
+    <End Role="empleado" Type="Self.empleado" Multiplicity="1" />
+    <End Role="cargoEmpleado" Type="Self.cargoEmpleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empleado">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cargoEmpleado">
+        <PropertyRef Name="idEmpleado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_idEmpresa">
+    <End Role="empresa" Type="Self.empresa" Multiplicity="1" />
+    <End Role="empleado" Type="Self.empleado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="empresa">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="empleado">
+        <PropertyRef Name="idEmpresa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="crudEntity" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cargo" EntityType="Self.cargo" />
+    <EntitySet Name="cargoEmpleado" EntityType="Self.cargoEmpleado" />
+    <EntitySet Name="empleado" EntityType="Self.empleado" />
+    <EntitySet Name="empresa" EntityType="Self.empresa" />
+    <AssociationSet Name="FK__cargoEmpl__idCar__3F466844" Association="Self.FK__cargoEmpl__idCar__3F466844">
+      <End Role="cargo" EntitySet="cargo" />
+      <End Role="cargoEmpleado" EntitySet="cargoEmpleado" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idEmpleado" Association="Self.fk_idEmpleado">
+      <End Role="empleado" EntitySet="empleado" />
+      <End Role="cargoEmpleado" EntitySet="cargoEmpleado" />
+    </AssociationSet>
+    <AssociationSet Name="fk_idEmpresa" Association="Self.fk_idEmpresa">
+      <End Role="empresa" EntitySet="empresa" />
+      <End Role="empleado" EntitySet="empleado" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
