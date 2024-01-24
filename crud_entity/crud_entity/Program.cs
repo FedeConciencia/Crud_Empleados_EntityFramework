@@ -1,5 +1,5 @@
 ﻿using crud_entity.Controlador;
-using crud_entity.Models;
+using crud_entity.ModelsAux;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,22 +19,21 @@ namespace crud_entity
             //Zona para gestionar pruebas de metodos CRUD:
 
             /*
-             * 
-                ControladorEmpresa control = new ControladorEmpresa();
 
-                empresa e1 = control.oneEmpresa("Microsoft");
+                ControladorAux controladorAux = new ControladorAux();
 
-                Console.WriteLine("PRUEBA");
+                List<AuxEmpleadoInner> auxList = controladorAux.allEmpleadosInnerJoin();
 
-                Console.WriteLine(e1.id);
-                Console.WriteLine(e1.nombre);
-                Console.WriteLine(e1.activo);
+                foreach (AuxEmpleadoInner item in auxList)
+                {
+                    Console.WriteLine(item);
+                }
 
             */
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FormPrincipal());
 
              
         }

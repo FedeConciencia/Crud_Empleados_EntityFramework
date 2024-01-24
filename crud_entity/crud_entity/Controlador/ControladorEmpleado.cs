@@ -32,6 +32,8 @@ namespace crud_entity.Controlador
 
         }
 
+        
+
         //Metodo para obtener one empleado por su nombre y apellido:
         public empleado oneEmpleadoNomApell(string nom, string apell)
         {
@@ -47,6 +49,34 @@ namespace crud_entity.Controlador
 
 
                     dato = (from item in db.empleado where item.nombre == nom && item.apellido == apell && item.activo == true select item).FirstOrDefault<empleado>();
+
+
+                    return dato;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+        //Metodo para obtener one empleado por su nombre y apellido:
+        public empleado oneEmpleadoId(int idEmpleado)
+        {
+
+
+            try
+            {
+                //Conecta a la BD y obtiene allEmpresa:
+                using (crudEntity db = new crudEntity())
+                {
+
+                    empleado dato = new empleado();
+
+
+                    dato = (from item in db.empleado where item.id == idEmpleado && item.activo == true select item).FirstOrDefault<empleado>();
 
 
                     return dato;

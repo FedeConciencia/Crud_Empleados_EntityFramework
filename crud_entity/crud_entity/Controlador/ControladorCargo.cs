@@ -60,6 +60,35 @@ namespace crud_entity.Controlador
 
         }
 
+
+        //Metodo para obtener one cargo por su Id:
+        public cargo oneCargoId(int idCargo)
+        {
+
+
+            try
+            {
+                //Conecta a la BD y obtiene allEmpresa:
+                using (crudEntity db = new crudEntity())
+                {
+
+                    cargo dato = new cargo();
+
+
+                    dato = (from item in db.cargo where item.id == idCargo && item.activo == true select item).FirstOrDefault<cargo>();
+
+
+                    return dato;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
         //Metodo para insertar el objeto cargo:
         public void insertCargo(cargo objeto)
         {

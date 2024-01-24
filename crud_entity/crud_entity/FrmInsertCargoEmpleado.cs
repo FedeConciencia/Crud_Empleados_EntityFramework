@@ -36,10 +36,6 @@ namespace crud_entity
             Text = "MODIFICAR CARGA-EMPLEADO";
             btnInsert.Text = "UPDATE";
 
-            //Actualizamos los campos con los datos:
-            
-
-
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -49,7 +45,18 @@ namespace crud_entity
 
         private void FrmInsertCargoEmpleado_Load(object sender, EventArgs e)
         {
+            //Cargamos el combo Box:
+
             cargarList();
+
+
+            //Actualizamos los campos con los datos:
+
+            if(this.c1 != null)
+            {
+                actualizarGrilla(this.c1.idEmpleado, this.c1.idCargo);
+            }
+            
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -112,35 +119,56 @@ namespace crud_entity
                 else
                 {
 
-                    /*
+                    
 
                     Console.WriteLine("INGRESO EN ACTUALIZAR DATO ");
 
-                    ControladorEmpresa controlEmpresa = new ControladorEmpresa();
-
+                    bool bandera = false;
                     string name = txtName.Text;
                     string apellido = txtApe.Text;
-                    string empresa = comboEmpresa.SelectedItem.ToString();
+                    string cargo = comboCargo.SelectedItem.ToString();
                     bool activo = true;
-
-                    //Obtenemos la empresa por nombre:
-                    empresa emp = controlEmpresa.oneEmpresaNombre(empresa);
-
-                    //Importante se debe mantener el objeto que se trae por parametro con su id correspondiente:
-                    e1.nombre = name;
-                    e1.apellido = apellido;
-                    e1.idEmpresa = emp.id;
-                    e1.activo = activo;
 
                     ControladorEmpleado controlEmpleado = new ControladorEmpleado();
 
-                    controlEmpleado.updateEmpleado(e1);
+                    empleado empleado = controlEmpleado.oneEmpleadoNomApell(name, apellido);
 
-                    MessageBox.Show("Registro empleado actualizado con exito.");
+                    if (empleado == null)
+                    {
+                        bandera = false;
+                    }
+                    else
+                    {
+                        bandera = true;
+                    }
 
-                    this.Close();
+                    if (bandera)
+                    {
+                        ControladorCargoEmpleado controlCargoEmpleado = new ControladorCargoEmpleado();
 
-                    */
+                        ControladorCargo controlCargo = new ControladorCargo();
+
+                        //Obtener el objeto Cargo seleccionado:
+                        cargo carg1 = controlCargo.oneCargoNombre(cargo);
+
+                        c1.idEmpleado = empleado.id;
+                        c1.idCargo = carg1.id;
+                        c1.activo = activo;
+
+                        controlCargoEmpleado.updateCargoEmpleado(c1);
+
+                        MessageBox.Show("Registro cargoEmpleado actualizado con exito.");
+
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error. El nombre y apellido ingresado no corresponde a un empleado activo o existente en la base.");
+
+                        this.Close();
+
+                    }
+
 
                 }
 
@@ -168,6 +196,30 @@ namespace crud_entity
                 comboCargo.Items.Add(item.nombre);
             }
 
+        }
+
+        private void actualizarGrilla(int idEmpleado, int idCargo)
+        {
+            try
+            {
+                ControladorEmpleado controlEmpleado = new ControladorEmpleado();
+                ControladorCargo controladorCargo = new ControladorCargo();
+
+                empleado e3 = controlEmpleado.oneEmpleadoId(idEmpleado);
+                cargo c3 = controladorCargo.oneCargoId(idCargo);
+
+                Console.WriteLine("Nombre Empresa: " + c3.nombre);
+
+                txtName.Text = e3.nombre;
+                txtApe.Text = e3.apellido;
+                comboCargo.SelectedIndex = comboCargo.FindStringExact(c3.nombre);
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Error. No fue posible gestionar solicitud.");
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

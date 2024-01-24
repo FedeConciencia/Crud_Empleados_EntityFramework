@@ -65,9 +65,10 @@ namespace crud_entity
 
         }
 
+        //Metodo para seleccionar el item del combo:
         private void selectCombo()
         {
-
+            
             ControladorEmpresa control = new ControladorEmpresa();
 
             //Si el paramentro empleado es nulo: 
@@ -80,6 +81,7 @@ namespace crud_entity
 
                 empresa empresa1 = control.oneEmpresaId(e1.idEmpresa);
 
+                //Seleccionamos Combo por el nombre del objeto empresa:
                 comboEmpresa.SelectedIndex = comboEmpresa.FindStringExact(empresa1.nombre);
 
             }

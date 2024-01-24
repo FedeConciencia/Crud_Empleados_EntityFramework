@@ -6,7 +6,6 @@ C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildor
 C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildoras\crud_entity\crud_entity\bin\Debug\EntityFramework.xml
 C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildoras\crud_entity\crud_entity\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildoras\crud_entity\crud_entity\obj\Debug\crud_entity.csproj.AssemblyReference.cache
-C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildoras\crud_entity\crud_entity\obj\Debug\crud_entity.Form1.resources
 C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildoras\crud_entity\crud_entity\obj\Debug\crud_entity.Properties.Resources.resources
 C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildoras\crud_entity\crud_entity\obj\Debug\crud_entity.csproj.GenerateResource.cache
 C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildoras\crud_entity\crud_entity\obj\Debug\crud_entity.csproj.CoreCompileInputs.cache
@@ -21,3 +20,4 @@ C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildor
 C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildoras\crud_entity\crud_entity\obj\Debug\crud_entity.FrmInsertCargo.resources
 C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildoras\crud_entity\crud_entity\obj\Debug\crud_entity.FrmInsertCargoEmpleado.resources
 C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildoras\crud_entity\crud_entity\obj\Debug\crud_entity.FrmPrincCargoEmpleado.resources
+C:\Users\FedericoSabatini\Desktop\TRABAJO CEDI\Cursos_NET\practica1\Curso_Pildoras\crud_entity\crud_entity\obj\Debug\crud_entity.FormPrincipal.resources
