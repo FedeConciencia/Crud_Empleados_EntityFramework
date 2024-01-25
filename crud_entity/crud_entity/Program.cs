@@ -1,4 +1,5 @@
 ﻿using crud_entity.Controlador;
+using crud_entity.Models;
 using crud_entity.ModelsAux;
 using System;
 using System.Collections.Generic;
@@ -29,6 +30,29 @@ namespace crud_entity
                     Console.WriteLine(item);
                 }
 
+            */
+
+
+            /*
+                Console.WriteLine("*** PRUEBA FILTRO EMPRESA ***");
+
+                ControladorEmpresa control = new ControladorEmpresa();
+
+                List<empresa> list = control.filtroBusqueda("Nombre", "Comienza con", "le");
+
+                try
+                {
+                    foreach (empresa item in list)
+                    {
+                        Console.WriteLine(item);
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    Console.WriteLine(ex.Message);
+                }
+            
             */
 
             Application.EnableVisualStyles();

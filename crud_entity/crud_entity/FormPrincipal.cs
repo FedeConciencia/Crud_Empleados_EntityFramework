@@ -74,6 +74,7 @@ namespace crud_entity
                 cboCampo.Items.Add("Cargo");
 
                 //Cargar ComboBox Criterio:
+                cboCriterio.Items.Clear();
                 cboCriterio.Items.Add("Comienza con");
                 cboCriterio.Items.Add("Finaliza con");
                 cboCriterio.Items.Add("Contiene");
@@ -94,7 +95,7 @@ namespace crud_entity
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string campo = cboCampo.SelectedItem.ToString();
-            string criterio = cboCampo.SelectedItem.ToString();
+            string criterio = cboCriterio.SelectedItem.ToString();
             string search = txtSearch.Text;
 
             List<AuxEmpleadoInner> listAux;

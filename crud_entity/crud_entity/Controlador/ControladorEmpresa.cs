@@ -4,39 +4,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using crud_entity.Models;
+using crud_entity.ModelsAux;
 
 namespace crud_entity.Controlador
 {
     public class ControladorEmpresa
     {
 
-		//Metodo para obtener todas las empresas:
+        //Metodo para obtener todas las empresas:
         public List<empresa> allEmpresas()
         {
 
-			try
-			{
-				//Conecta a la BD y obtiene allEmpresa:
-				using (crudEntity db = new crudEntity())
-				{
-					var list = from item in db.empresa where item.activo != false select item;
+            try
+            {
+                //Conecta a la BD y obtiene allEmpresa:
+                using (crudEntity db = new crudEntity())
+                {
+                    var list = from item in db.empresa where item.activo != false select item;
 
-                    List<empresa> listaEmpresa = list.ToList();	
+                    List<empresa> listaEmpresa = list.ToList();
 
-					return listaEmpresa;
-				}
-			}
-			catch (Exception ex)
-			{
-				throw ex;
-			}
+                    return listaEmpresa;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
         }
 
         //Metodo para obtener one empresa por su nombre:
         public empresa oneEmpresaNombre(string nombre)
         {
-            
+
 
             try
             {
@@ -49,7 +50,7 @@ namespace crud_entity.Controlador
 
                     dato = (from item in db.empresa where item.nombre == nombre select item).FirstOrDefault<empresa>();
 
-      
+
                     return dato;
 
                 }
@@ -92,7 +93,7 @@ namespace crud_entity.Controlador
 
         //Metodo para insertar el objeto empresa:
         public void insertEmpresa(empresa objeto)
-		{
+        {
             try
             {
                 //Conecta a la BD e inserta la empresa:
@@ -142,6 +143,112 @@ namespace crud_entity.Controlador
                     db.empresa.Remove(objeto);
                     db.SaveChanges();
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
+        //Metodo para obtener todas las empresas por busqueda de filtro:
+        public List<empresa> filtroBusqueda(string campo, string criterio, string search)
+        {
+
+            try
+            {
+
+                if (campo.Equals("Nombre"))
+                {
+
+                    if (criterio.Equals("Comienza con"))
+                    {
+
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.empresa
+                                       where item.nombre.StartsWith(search)
+                                       select item;
+
+                            List<empresa> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+
+                    }
+                    else if (criterio.Equals("Finaliza con"))
+                    {
+
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list =  from item in db.empresa
+                                        where item.nombre.EndsWith(search)
+                                        select item;
+
+                            List<empresa> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+
+                    }
+                    else
+                    {
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.empresa
+                                       where item.nombre.Contains(search)
+                                       select item;
+                                      
+
+                            List<empresa> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+                    }
+
+                }
+                else
+                {
+
+                    if (criterio.Equals("True"))
+                    {
+
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.empresa
+                                       where item.activo != false
+                                       select item;
+
+                            List<empresa> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+
+                    }
+                    else
+                    {
+
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.empresa
+                                       where item.activo != true
+                                       select item;
+
+                            List<empresa> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+
+                    }
+
+                }
+
             }
             catch (Exception ex)
             {
