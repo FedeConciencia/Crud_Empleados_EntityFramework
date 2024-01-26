@@ -179,10 +179,6 @@ namespace crud_entity
             string criterio = cboCritEmpresa.SelectedItem.ToString();
             string search = txtSearchEmpresa.Text;
 
-            Console.WriteLine("CAMPO => " + campo);
-            Console.WriteLine("CRITERIO => " + criterio);
-            Console.WriteLine("SEARCH => " + search);
-
             List<empresa> listEmpresa;
 
             try

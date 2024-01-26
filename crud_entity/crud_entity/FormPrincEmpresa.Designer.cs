@@ -152,7 +152,7 @@
             // 
             // btnSearchEmpresa
             // 
-            this.btnSearchEmpresa.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnSearchEmpresa.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkKhaki;
             this.btnSearchEmpresa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearchEmpresa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchEmpresa.Location = new System.Drawing.Point(647, 13);
@@ -230,10 +230,10 @@
             // 
             // dataGrid
             // 
-            this.dataGrid.BackgroundColor = System.Drawing.Color.LightSteelBlue;
+            this.dataGrid.BackgroundColor = System.Drawing.Color.CadetBlue;
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGrid.Location = new System.Drawing.Point(137, 104);
+            this.dataGrid.Location = new System.Drawing.Point(124, 82);
             this.dataGrid.MaximumSize = new System.Drawing.Size(475, 191);
             this.dataGrid.MinimumSize = new System.Drawing.Size(475, 191);
             this.dataGrid.Name = "dataGrid";

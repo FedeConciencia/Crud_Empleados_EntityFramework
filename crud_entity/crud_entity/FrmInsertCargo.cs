@@ -20,7 +20,7 @@ namespace crud_entity
         {
             InitializeComponent();
             Text = "ALTA DE CARGO";
-            btnInsert.Text = "INSERT";
+            btnInsert.Text = "AGREGAR";
 
         }
 
@@ -28,8 +28,8 @@ namespace crud_entity
         {
             InitializeComponent();
             this.c1 = c1;
-            Text = "MODIFICAR CARGO";
-            btnInsert.Text = "UPDATE";
+            Text = "ACTUALIZAR CARGO";
+            btnInsert.Text = "ACTUALIZAR";
 
             //Actualizamos los campos con los datos:
             txtName.Text = c1.nombre;
@@ -41,6 +41,48 @@ namespace crud_entity
             this.Close();
         }
 
+        private bool validarDatos()
+        {
+            bool bandera = false;
+
+            //Valida Txt Nombre:
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                lblErrName2.Text = "*";
+                lblErrName1.Text = "Error. Debe ingresar un valor.";
+                txtName.BackColor = Color.Red;
+                bandera = true;
+            }
+            else
+            {
+                lblErrName1.Text = "";
+                lblErrName2.Text = "";
+                txtName.BackColor = Color.White;
+                bandera = false;
+
+                if (txtName.Text.Length < 4)
+                {
+                    lblErrName2.Text = "*";
+                    lblErrName1.Text = "Error. Debe ingresar un nombre con mas caracteres.";
+                    txtName.BackColor = Color.Red;
+                    bandera = true;
+                }
+                else
+                {
+                    lblErrName1.Text = "";
+                    lblErrName2.Text = "";
+                    txtName.BackColor = Color.White;
+                    bandera = false;
+
+                }
+
+            }
+
+
+            return bandera;
+
+        }
+
         private void btnInsert_Click(object sender, EventArgs e)
         {
             try
@@ -48,6 +90,14 @@ namespace crud_entity
 
                 if (this.c1 == null)
                 {
+                    //INSERT DE DATOS:
+
+                    //Si existe alguna validacion erronea aborta la carga de datos:
+                    if (validarDatos())
+                    {
+                        MessageBox.Show("Error, Verificar los datos ingresados.");
+                        return;
+                    }
 
                     ControladorCargo control = new ControladorCargo();
 
@@ -69,7 +119,15 @@ namespace crud_entity
                 else
                 {
 
-  
+                    //UPDATE DE DATOS:
+
+                    //Si existe alguna validacion erronea aborta la carga de datos:
+                    if (validarDatos())
+                    {
+                        MessageBox.Show("Error, Verificar los datos ingresados.");
+                        return;
+                    }
+
                     ControladorCargo control= new ControladorCargo();
 
                     string name = txtName.Text;

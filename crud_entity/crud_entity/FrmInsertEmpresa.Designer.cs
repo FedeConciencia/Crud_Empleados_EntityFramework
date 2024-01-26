@@ -32,6 +32,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
+            this.lblErrName1 = new System.Windows.Forms.Label();
+            this.lblErrName2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnInsert
@@ -40,7 +42,7 @@
             this.btnInsert.FlatAppearance.MouseOverBackColor = System.Drawing.Color.OliveDrab;
             this.btnInsert.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInsert.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsert.Location = new System.Drawing.Point(42, 225);
+            this.btnInsert.Location = new System.Drawing.Point(94, 240);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(99, 44);
             this.btnInsert.TabIndex = 0;
@@ -54,7 +56,7 @@
             this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkRed;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(206, 225);
+            this.btnCancel.Location = new System.Drawing.Point(309, 240);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(99, 44);
             this.btnCancel.TabIndex = 1;
@@ -66,7 +68,7 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(39, 91);
+            this.lblName.Location = new System.Drawing.Point(109, 87);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(54, 13);
             this.lblName.TabIndex = 2;
@@ -74,23 +76,43 @@
             // 
             // txtName
             // 
-            this.txtName.Location = new System.Drawing.Point(109, 88);
+            this.txtName.Location = new System.Drawing.Point(169, 84);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(171, 20);
+            this.txtName.Size = new System.Drawing.Size(207, 20);
             this.txtName.TabIndex = 3;
+            // 
+            // lblErrName1
+            // 
+            this.lblErrName1.AutoSize = true;
+            this.lblErrName1.ForeColor = System.Drawing.Color.Red;
+            this.lblErrName1.Location = new System.Drawing.Point(166, 113);
+            this.lblErrName1.Name = "lblErrName1";
+            this.lblErrName1.Size = new System.Drawing.Size(0, 13);
+            this.lblErrName1.TabIndex = 4;
+            // 
+            // lblErrName2
+            // 
+            this.lblErrName2.AutoSize = true;
+            this.lblErrName2.ForeColor = System.Drawing.Color.Red;
+            this.lblErrName2.Location = new System.Drawing.Point(382, 87);
+            this.lblErrName2.Name = "lblErrName2";
+            this.lblErrName2.Size = new System.Drawing.Size(0, 13);
+            this.lblErrName2.TabIndex = 5;
             // 
             // FrmInsertEmpresa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightSlateGray;
-            this.ClientSize = new System.Drawing.Size(350, 303);
+            this.BackColor = System.Drawing.Color.CadetBlue;
+            this.ClientSize = new System.Drawing.Size(496, 322);
+            this.Controls.Add(this.lblErrName2);
+            this.Controls.Add(this.lblErrName1);
             this.Controls.Add(this.txtName);
             this.Controls.Add(this.lblName);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnInsert);
-            this.MaximumSize = new System.Drawing.Size(366, 342);
-            this.MinimumSize = new System.Drawing.Size(366, 342);
+            this.MaximumSize = new System.Drawing.Size(512, 361);
+            this.MinimumSize = new System.Drawing.Size(512, 361);
             this.Name = "FrmInsertEmpresa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmInsertEmpresa";
@@ -106,5 +128,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtName;
+        private System.Windows.Forms.Label lblErrName1;
+        private System.Windows.Forms.Label lblErrName2;
     }
 }

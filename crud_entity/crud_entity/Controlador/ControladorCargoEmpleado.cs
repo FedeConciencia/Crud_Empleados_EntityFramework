@@ -92,5 +92,71 @@ namespace crud_entity.Controlador
             }
 
         }
+
+        //Metodo para obtener todas los cargos por busqueda de filtro:
+        public List<cargoEmpleado> filtroBusqueda(string campo, string criterio, string search)
+        {
+
+            try
+            {
+
+                if (campo.Equals("Activo"))
+                {
+
+                    if (criterio.Equals("True"))
+                    {
+
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.cargoEmpleado
+                                       where item.activo != false
+                                       select item;
+
+                            List<cargoEmpleado> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+
+                    }
+                    else
+                    {
+
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.cargoEmpleado
+                                       where item.activo != true
+                                       select item;
+
+                            List<cargoEmpleado> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    //Conecta a la BD y obtiene allEmpresa:
+                    using (crudEntity db = new crudEntity())
+                    {
+                        var list = from item in db.cargoEmpleado where item.activo != false select item;
+
+                        List<cargoEmpleado> listaCargoEmpleado = list.ToList();
+
+                        return listaCargoEmpleado;
+                    }
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }

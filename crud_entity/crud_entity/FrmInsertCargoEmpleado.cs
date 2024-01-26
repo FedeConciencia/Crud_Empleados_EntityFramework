@@ -25,7 +25,7 @@ namespace crud_entity
         {
             InitializeComponent();
             Text = "ALTA DE CARGO-EMPLEADO";
-            btnInsert.Text = "INSERT";
+            btnInsert.Text = "AGREGAR";
 
         }
 
@@ -33,8 +33,8 @@ namespace crud_entity
         {
             InitializeComponent();
             this.c1 = c1;
-            Text = "MODIFICAR CARGA-EMPLEADO";
-            btnInsert.Text = "UPDATE";
+            Text = "ACTUALIZAR CARGA-EMPLEADO";
+            btnInsert.Text = "ACTUALIZAR";
 
         }
 
@@ -56,7 +56,105 @@ namespace crud_entity
             {
                 actualizarGrilla(this.c1.idEmpleado, this.c1.idCargo);
             }
+            else
+            {
+                
+                 comboCargo.SelectedIndex = 0;
+                
+            }
             
+        }
+
+        private bool validarDatos()
+        {
+            bool bandera = false;
+
+            //Valida Txt Nombre:
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                lblErrName2.Text = "*";
+                lblErrName1.Text = "Error. Debe ingresar un valor.";
+                txtName.BackColor = Color.Red;
+                bandera = true;
+            }
+            else
+            {
+                lblErrName1.Text = "";
+                lblErrName2.Text = "";
+                txtName.BackColor = Color.White;
+                bandera = false;
+
+                if (txtName.Text.Length < 4)
+                {
+                    lblErrName2.Text = "*";
+                    lblErrName1.Text = "Error. Debe ingresar un nombre con mas caracteres.";
+                    txtName.BackColor = Color.Red;
+                    bandera = true;
+                }
+                else
+                {
+                    lblErrName1.Text = "";
+                    lblErrName2.Text = "";
+                    txtName.BackColor = Color.White;
+                    bandera = false;
+
+                }
+
+            }
+
+            //Valida Txt Apellido:
+            if (string.IsNullOrEmpty(txtApe.Text))
+            {
+                lblErrApe2.Text = "*";
+                lblErrApe1.Text = "Error. Debe ingresar un valor.";
+                txtApe.BackColor = Color.Red;
+                bandera = true;
+            }
+            else
+            {
+                lblErrApe1.Text = "";
+                lblErrApe2.Text = "";
+                txtApe.BackColor = Color.White;
+                bandera = false;
+
+                if (txtApe.Text.Length < 4)
+                {
+                    lblErrApe2.Text = "*";
+                    lblErrApe1.Text = "Error. Debe ingresar un nombre con mas caracteres.";
+                    txtApe.BackColor = Color.Red;
+                    bandera = true;
+                }
+                else
+                {
+                    lblErrApe2.Text = "";
+                    lblErrApe1.Text = "";
+                    txtName.BackColor = Color.White;
+                    bandera = false;
+
+                }
+
+            }
+
+
+            //Valida ComboBox Empresa seleccionado:
+            if (comboCargo.SelectedIndex < 0)
+            {
+                lblErrCarg2.Text = "*";
+                lblErrCarg1.Text = "Error. Debe seleccionar un valor.";
+                comboCargo.BackColor = Color.Red;
+                bandera = true;
+            }
+            else
+            {
+                lblErrCarg2.Text = "";
+                lblErrCarg1.Text = "";
+                comboCargo.BackColor = Color.White;
+
+            }
+
+
+            return bandera;
+
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -66,6 +164,16 @@ namespace crud_entity
 
                 if (this.c1 == null)
                 {
+
+
+                    //INSERT DE DATOS:
+
+                    //Si existe alguna validacion erronea aborta la carga de datos:
+                    if (validarDatos())
+                    {
+                        MessageBox.Show("Error, Verificar los datos ingresados.");
+                        return;
+                    }
 
                     bool bandera = false;
                     string name = txtName.Text;
@@ -119,9 +227,16 @@ namespace crud_entity
                 else
                 {
 
-                    
 
-                    Console.WriteLine("INGRESO EN ACTUALIZAR DATO ");
+
+                    //UPDATE DE DATOS:
+
+                    //Si existe alguna validacion erronea aborta la carga de datos:
+                    if (validarDatos())
+                    {
+                        MessageBox.Show("Error, Verificar los datos ingresados.");
+                        return;
+                    }
 
                     bool bandera = false;
                     string name = txtName.Text;

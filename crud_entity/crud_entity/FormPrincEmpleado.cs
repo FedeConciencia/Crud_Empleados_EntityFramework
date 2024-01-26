@@ -22,6 +22,25 @@ namespace crud_entity
         private void FormPrincEmpleado_Load(object sender, EventArgs e)
         {
             cargar();
+
+            //Cargar ComboBox Campos:
+            cboCamEmp.Items.Add("Nombre");
+            cboCamEmp.Items.Add("Apellido");
+            cboCamEmp.Items.Add("Activo");
+
+
+
+            //Cargar ComboBox Criterio:
+            cboCritEmp.Items.Clear();
+            cboCritEmp.Items.Add("Comienza con");
+            cboCritEmp.Items.Add("Finaliza con");
+            cboCritEmp.Items.Add("Contiene");
+
+
+            //Al cargar seleccionamos el primer item de cada combo:
+            cboCamEmp.SelectedIndex = 0;
+            cboCritEmp.SelectedIndex = 0;
+
         }
 
         private void cargar()
@@ -144,6 +163,94 @@ namespace crud_entity
             {
                 MessageBox.Show("Error. No fue posible gestionar solicitud.");
                 Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void btnSearchEmpresa_Click(object sender, EventArgs e)
+        {
+            //Obtenemos los campos seleccionados
+            string campo = cboCamEmp.SelectedItem.ToString();
+            string criterio = cboCritEmp.SelectedItem.ToString();
+            string search = txtSearchEmp.Text;
+
+            List<empleado> listEmpleado;
+
+            try
+            {
+                ControladorEmpleado control = new ControladorEmpleado();
+
+                listEmpleado = control.filtroBusqueda(campo, criterio, search);
+
+                if (listEmpleado.Count() > 0)
+                {
+                    dataGrid.DataSource = listEmpleado;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron registros con las opciones de busqueda ingresadas.");
+                    cargar();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error. No es posible procesar la solicitud.");
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void cboCamEmp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string campo = cboCamEmp.SelectedItem.ToString();
+
+            if (campo.Equals("Nombre"))
+            {
+                //Cargar ComboBox Criterio:
+
+                cboCritEmp.ResetText();
+                cboCritEmp.Items.Clear();
+
+
+                cboCritEmp.Items.Add("Comienza con");
+                cboCritEmp.Items.Add("Finaliza con");
+                cboCritEmp.Items.Add("Contiene");
+
+                cboCritEmp.SelectedIndex = 0;
+
+
+                txtSearchEmp.Enabled = true;
+            }
+            else if(campo.Equals("Apellido"))
+            {
+                //Cargar ComboBox Criterio:
+
+                cboCritEmp.ResetText();
+                cboCritEmp.Items.Clear();
+
+
+                cboCritEmp.Items.Add("Comienza con");
+                cboCritEmp.Items.Add("Finaliza con");
+                cboCritEmp.Items.Add("Contiene");
+
+                cboCritEmp.SelectedIndex = 0;
+
+
+                txtSearchEmp.Enabled = true;
+            }
+            else
+            {
+                cboCritEmp.ResetText();
+                cboCritEmp.Items.Clear();
+
+
+
+                cboCritEmp.Items.Add("True");
+                cboCritEmp.Items.Add("False");
+
+                cboCritEmp.SelectedIndex = 0;
+
+
+                txtSearchEmp.Enabled = false;
             }
         }
     }

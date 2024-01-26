@@ -222,7 +222,7 @@
             this.dataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGrid.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGrid.GridColor = System.Drawing.Color.SkyBlue;
-            this.dataGrid.Location = new System.Drawing.Point(111, 61);
+            this.dataGrid.Location = new System.Drawing.Point(127, 65);
             this.dataGrid.MaximumSize = new System.Drawing.Size(475, 191);
             this.dataGrid.MinimumSize = new System.Drawing.Size(475, 191);
             this.dataGrid.Name = "dataGrid";

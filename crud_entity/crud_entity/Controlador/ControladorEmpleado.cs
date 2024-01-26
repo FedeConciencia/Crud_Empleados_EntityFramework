@@ -150,5 +150,163 @@ namespace crud_entity.Controlador
             }
 
         }
+
+        //Metodo para obtener todas los empleados por busqueda de filtro:
+        public List<empleado> filtroBusqueda(string campo, string criterio, string search)
+        {
+
+            try
+            {
+
+                if (campo.Equals("Nombre"))
+                {
+
+                    if (criterio.Equals("Comienza con"))
+                    {
+
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.empleado
+                                       where item.nombre.StartsWith(search)
+                                       select item;
+
+                            List<empleado> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+
+                    }
+                    else if (criterio.Equals("Finaliza con"))
+                    {
+
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.empleado
+                                       where item.nombre.EndsWith(search)
+                                       select item;
+
+                            List<empleado> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+
+                    }
+                    else
+                    {
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.empleado
+                                       where item.nombre.Contains(search)
+                                       select item;
+
+
+                            List<empleado> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+                    }
+
+                }
+                else if(campo.Equals("Apellido"))
+                {
+
+                    if (criterio.Equals("Comienza con"))
+                    {
+
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.empleado
+                                       where item.apellido.StartsWith(search)
+                                       select item;
+
+                            List<empleado> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+
+                    }
+                    else if (criterio.Equals("Finaliza con"))
+                    {
+
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.empleado
+                                       where item.apellido.EndsWith(search)
+                                       select item;
+
+                            List<empleado> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+
+                    }
+                    else
+                    {
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.empleado
+                                       where item.apellido.Contains(search)
+                                       select item;
+
+
+                            List<empleado> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+                    }
+
+                }
+                else
+                {
+                    if (criterio.Equals("True"))
+                    {
+
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.empleado
+                                       where item.activo != false
+                                       select item;
+
+                            List<empleado> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+
+                    }
+                    else
+                    {
+
+                        //Conecta a la BD y obtiene AuxEmpleadoInner:
+                        using (crudEntity db = new crudEntity())
+                        {
+                            var list = from item in db.empleado
+                                       where item.activo != true
+                                       select item;
+
+                            List<empleado> listaAux = list.ToList();
+
+                            return listaAux;
+                        }
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+
+
     }
+
 }

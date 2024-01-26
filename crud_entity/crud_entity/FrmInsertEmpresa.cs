@@ -19,24 +19,77 @@ namespace crud_entity
         {
             InitializeComponent();
             Text = "ALTA DE EMPRESA";
-            btnInsert.Text = "INSERT";
+            btnInsert.Text = "AGREGAR";
         }
 
         public FrmInsertEmpresa(empresa e1)
         {
             InitializeComponent();
             this.e1 = e1;
-            Text = "MODIFICAR EMPRESA";
-            btnInsert.Text = "UPDATE";
+            Text = "ACTUALIZAR EMPRESA";
+            btnInsert.Text = "ACTUALIZAR";
 
             //Actualizamos los campos con los datos:
             txtName.Text = e1.nombre;
-          
+
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close(); 
+        }
+
+        private bool validarDatos()
+        {
+            bool bandera = false;
+
+            //Valida Txt Nombre:
+            if (string.IsNullOrEmpty(txtName.Text))
+            {
+                lblErrName2.Text = "*";
+                lblErrName1.Text = "Error. Debe ingresar un valor.";
+                txtName.BackColor = Color.Red;
+                bandera = true;
+            }
+            else
+            {
+                lblErrName1.Text = "";
+                lblErrName2.Text = "";
+                txtName.BackColor = Color.White;
+                bandera = false;
+
+                if (txtName.Text.Length < 4)
+                {
+                    lblErrName2.Text = "*";
+                    lblErrName1.Text = "Error. Debe ingresar un nombre con mas caracteres.";
+                    txtName.BackColor = Color.Red;
+                    bandera = true;
+                }
+                else
+                {
+                    lblErrName1.Text = "";
+                    lblErrName2.Text = "";
+                    txtName.BackColor = Color.White;
+                    bandera = false;
+
+                }
+
+            }
+
+           
+            return bandera;
+
+        }
+
+        //Validar que no se ingresen numeros:
+        private bool soloNumeros(string name)
+        {
+            //Devuelve False, si el numero ingresado contiene caracteres:
+            int numericValue;
+            bool isNumber = int.TryParse(name, out numericValue);
+            return isNumber;
+
         }
 
         private void btnInsert_Click(object sender, EventArgs e)
@@ -46,6 +99,15 @@ namespace crud_entity
 
                 if (this.e1 == null)
                 {
+                    //INSERT DE DATOS:
+
+                    //Si existe alguna validacion erronea aborta la carga de datos:
+                    if (validarDatos())
+                    {
+                        MessageBox.Show("Error, Verificar los datos ingresados.");
+                        return;
+                    }
+
                     string name = txtName.Text;
                     bool activo = true;
 
@@ -58,7 +120,7 @@ namespace crud_entity
 
                     control.insertEmpresa(e2);
 
-                    MessageBox.Show("Registro empresa registrado con exito.");
+                    MessageBox.Show("Registro empresa ingresado con exito.");
 
                     this.Close();
 
@@ -66,9 +128,14 @@ namespace crud_entity
                 else
                 {
 
+                    //ACTUALIZACION DE DATOS:
 
-
-                    Console.WriteLine("INGRESO EN ACTUALIZAR DATO ");
+                    //Si existe alguna validacion erronea aborta la carga de datos:
+                    if (validarDatos())
+                    {
+                        MessageBox.Show("Error, Verificar los datos ingresados.");
+                        return;
+                    }
 
                     string name = txtName.Text;
                     bool activo = true;
@@ -93,7 +160,7 @@ namespace crud_entity
             catch (Exception ex)
             {
 
-                MessageBox.Show("Error. No fue posible gestionar solicitud.");
+                MessageBox.Show("Error. No fue posible gestionar la solicitud.");
                 Console.WriteLine(ex.Message);
             }
         }
@@ -102,5 +169,7 @@ namespace crud_entity
         {
 
         }
+
+        
     }
 }

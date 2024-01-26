@@ -22,6 +22,23 @@ namespace crud_entity
         private void FormPrincCargo_Load(object sender, EventArgs e)
         {
             cargar();
+
+            //Cargar ComboBox Campos:
+            cboCampCarg.Items.Add("Nombre");
+            cboCampCarg.Items.Add("Activo");
+
+
+            //Cargar ComboBox Criterio:
+            cboCritCarg.Items.Clear();
+            cboCritCarg.Items.Add("Comienza con");
+            cboCritCarg.Items.Add("Finaliza con");
+            cboCritCarg.Items.Add("Contiene");
+
+
+
+            //Al cargar seleccionamos el primer item de cada combo:
+            cboCampCarg.SelectedIndex = 0;
+            cboCritCarg.SelectedIndex = 0;
         }
 
         private void cargar()
@@ -150,6 +167,74 @@ namespace crud_entity
             }
         }
 
-        
+        private void btnSearchCargo_Click(object sender, EventArgs e)
+        {
+            //Obtenemos los campos seleccionados
+            string campo = cboCampCarg.SelectedItem.ToString();
+            string criterio = cboCritCarg.SelectedItem.ToString();
+            string search = txtSearchCarg.Text;
+
+            List<cargo> listCargo;
+
+            try
+            {
+                ControladorCargo control = new ControladorCargo();
+                listCargo = control.filtroBusqueda(campo, criterio, search);
+
+                if (listCargo.Count() > 0)
+                {
+                    dataGrid.DataSource = listCargo;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron registros con las opciones de busqueda ingresadas.");
+                    cargar();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error. No es posible procesar la solicitud.");
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void cboCampCarg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string campo = cboCampCarg.SelectedItem.ToString();
+
+            if (campo.Equals("Nombre"))
+            {
+                //Cargar ComboBox Criterio:
+
+                cboCritCarg.ResetText();
+                cboCritCarg.Items.Clear();
+
+
+                cboCritCarg.Items.Add("Comienza con");
+                cboCritCarg.Items.Add("Finaliza con");
+                cboCritCarg.Items.Add("Contiene");
+
+                cboCritCarg.SelectedIndex = 0;
+
+
+                txtSearchCarg.Enabled = true;
+            }
+            else
+            {
+                cboCritCarg.ResetText();
+                cboCritCarg.Items.Clear();
+
+
+
+                cboCritCarg.Items.Add("True");
+                cboCritCarg.Items.Add("False");
+
+                cboCritCarg.SelectedIndex = 0;
+
+
+                txtSearchCarg.Enabled = false;
+            }
+        }
     }
 }

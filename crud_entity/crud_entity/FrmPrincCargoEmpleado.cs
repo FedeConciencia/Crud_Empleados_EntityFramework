@@ -22,6 +22,19 @@ namespace crud_entity
         private void FrmPrincCargoEmpleado_Load(object sender, EventArgs e)
         {
             cargar();
+
+            //Cargar ComboBox Campos:
+            cboCamp1.Items.Add("Activo");
+
+
+            //Cargar ComboBox Criterio:
+            cboCrit1.Items.Clear();
+            cboCrit1.Items.Add("True");
+            cboCrit1.Items.Add("False");
+
+            //Al cargar seleccionamos el primer item de cada combo:
+            cboCamp1.SelectedIndex = 0;
+            cboCrit1.SelectedIndex = 0;
         }
 
         private void cargar()
@@ -146,6 +159,63 @@ namespace crud_entity
                 MessageBox.Show("Error. No fue posible gestionar solicitud.");
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private void btnSearch1_Click(object sender, EventArgs e)
+        {
+            //Obtenemos los campos seleccionados
+            string campo = cboCamp1.SelectedItem.ToString();
+            string criterio = cboCrit1.SelectedItem.ToString();
+            string search = textSearch1.Text;
+
+            List<cargoEmpleado> listCargoEmpleado;
+
+            try
+            {
+                ControladorCargoEmpleado control = new ControladorCargoEmpleado();
+                listCargoEmpleado = control.filtroBusqueda(campo, criterio, search);
+
+                if (listCargoEmpleado.Count() > 0)
+                {
+                    dataGrid.DataSource = listCargoEmpleado;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron registros con las opciones de busqueda ingresadas.");
+                    cargar();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error. No es posible procesar la solicitud.");
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+        private void cboCamp1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string campo = cboCamp1.SelectedItem.ToString();
+
+            if (campo.Equals("Activo"))
+            {
+                //Cargar ComboBox Criterio:
+
+                cboCrit1.ResetText();
+                cboCrit1.Items.Clear();
+
+
+                cboCrit1.Items.Add("True");
+                cboCrit1.Items.Add("False");
+
+
+                cboCrit1.SelectedIndex = 0;
+
+
+                textSearch1.Enabled = false;
+
+            }
+           
         }
     }
 }
