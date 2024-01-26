@@ -68,6 +68,7 @@ namespace crud_entity
                 dataGrid.DataSource = listAux;
 
                 //Cargar ComboBox Campos:
+                cboCriterio.Items.Clear();
                 cboCampo.Items.Add("Nombre");
                 cboCampo.Items.Add("Apellido");
                 cboCampo.Items.Add("Empresa");
@@ -113,7 +114,7 @@ namespace crud_entity
                 else
                 {
                     MessageBox.Show("No se encontraron registros con las opciones de busqueda ingresadas.");
-                    cargar();
+                    
                 }
 
             }catch(Exception ex)
